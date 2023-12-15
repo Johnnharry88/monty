@@ -19,13 +19,13 @@ int main(int argc, char *argv[])
 	rdlines = getline(&save.input, &x, fp);
 	while (rdlines != -1)
 	{
-		let[0] = strtok(save.input, " \t\n");
+		let[0] = strtok(save.input, "  \t\n");
 		if (let[0] && let[0][0] != '#')
 		{
 			f = fetch_opcodes(let[0]);
-			if (!f)
+			if (f == NULL)
 			{
-				fprintf(stderr, "L%u ",save.c_line);
+				fprintf(stderr, "L%u: ", save.c_line);
 				fprintf(stderr, "unknown instruction %s\n", let[0]);
 				free_hold();
 				exit(EXIT_FAILURE);

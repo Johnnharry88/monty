@@ -9,16 +9,16 @@ void func_push(stack_t **head, unsigned int c_line)
 {
 	int x, y;
 
-	if (!save.arg)
+	if (save.arg == NULL)
 	{
 		fprintf(stderr, "L%u: ", c_line);
 		fprintf(stderr, "usage: push integer\n");
 		free_hold();
 		exit(EXIT_FAILURE);
 	}
-	for (x = 0; save.arg[0] != '\0'; x++)
+	for (x = 0; save.arg[x] != '\0'; x++)
 	{
-		if (!isdigit(save.arg[x]) && save.arg[x] != '-')
+		if (save.arg[x] > '9' || save.arg[x] < '0')
 		{
 			fprintf(stderr, "L%u: ", c_line);
 			fprintf(stderr, "usage: push integer\n");
